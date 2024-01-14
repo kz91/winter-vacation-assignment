@@ -14,7 +14,7 @@ png_img = png_img / 255.0
 
 png_img = np.expand_dims(png_img, axis=0)
 
-# 推論
+# 予測
 pred = model.predict(png_img)
 predicted_class = np.argmax(pred)
 
