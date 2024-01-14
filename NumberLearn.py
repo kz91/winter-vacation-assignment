@@ -1,16 +1,17 @@
 import tensorflow as tf
+from tensorflow.keras.callbacks import EarlyStopping
 import numpy as np
 import matplotlib.pyplot as plt
 
-#データセット読み込み
+# データセット読み込み
 mnist = tf.keras.datasets.mnist.load_data()
 train, test = mnist
 (x_train, y_train),(x_test, y_test) = mnist
 
-print(x_train.shape)
-print(y_train.shape)
-print(x_test.shape)
-print(y_test.shape)
+print("x_train:", x_train.shape)
+print("y_train:", y_train.shape)
+print("y_train", x_test.shape)
+print("y_train", y_test.shape)
 
 # 正規化
 x_train = x_train / 255.0
@@ -47,8 +48,15 @@ model.compile(
    loss=tf.keras.losses.sparse_categorical_crossentropy,
    metrics=[tf.keras.metrics.sparse_categorical_accuracy]
 )
-model.fit(x_train, y_train, epochs=5)
 
-model.evaluate(x_test, y_test)
+# 早期終了
+early_stopping = EarlyStopping(monitor="val_loss", patience=3, restore_best_weights=True)
+
+history = model.fit(
+    x_train, y_train,
+    epochs=20,
+    validation_data=(x_test, y_test),
+    callbacks=[early_stopping]
+)
 
 model.save('charmodel.h5')
