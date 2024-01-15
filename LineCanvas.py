@@ -1,4 +1,5 @@
 import tkinter
+import subprocess
 from PIL import Image, ImageDraw
 
 
@@ -48,7 +49,8 @@ class Application(tkinter.Frame):
         self.test_canvas.delete(tkinter.ALL)
 
     def save_canvas(self):
-        self.test_canvas.postscript(file='out.ps', colormode='color')
+        self.test_canvas.postscript(file='temp.ps', colormode='color')
+        subprocess.run(['python', 'NumPredict.py'])
 
     def paint(self, event):
         if self.eraser_on:
