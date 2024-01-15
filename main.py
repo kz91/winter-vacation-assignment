@@ -1,3 +1,3 @@
 import subprocess
 
-subprocess.run(['python', 'linecanvas.py'])
+subprocess.run(['python', 'LineCanvas.py'])
