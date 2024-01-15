@@ -68,4 +68,4 @@ history = model.fit(
     callbacks=[early_stopping]
 )
 
-model.save('charmodel.h5')
+model.save('CharModel.h5')

@@ -3,7 +3,7 @@ import numpy as np
 from PIL import Image
 
 # モデルロード
-model = tf.keras.models.load_model('charmodel.h5')
+model = tf.keras.models.load_model('NumModel.h5')
 
 # ps2png変換
 ps_img = Image.open('temp.ps')
