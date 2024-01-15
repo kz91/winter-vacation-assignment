@@ -50,7 +50,7 @@ class Application(tkinter.Frame):
 
     def save_canvas(self):
         self.test_canvas.postscript(file='temp.ps', colormode='color')
-        subprocess.run(['python', 'NumPredict.py'])
+        subprocess.run(['python', 'CharPredict.py'])
 
     def paint(self, event):
         if self.eraser_on:
