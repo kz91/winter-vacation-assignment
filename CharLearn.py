@@ -6,17 +6,25 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # データセット読み込み
-x_train, y_train = extract_training_samples("balanced")
-x_test, y_test = extract_test_samples('balanced')
+x_train, y_train = extract_training_samples("byclass")
+x_test, y_test = extract_test_samples('byclass')
 
 print("x_train:", x_train.shape)
 print("y_train:", y_train.shape)
 print("y_train", x_test.shape)
 print("y_train", y_test.shape)
 
+# データ変形
+x_train = x_train.reshape((-1, 28, 28, 1))
+x_test = x_test.reshape((-1, 28, 28, 1))
+
 # 正規化
 x_train = x_train / 255.0
 x_test = x_test / 255.0
+
+# ラベルの型変換
+y_train = y_train.astype(np.int32)
+y_test = y_test.astype(np.int32)
 
 """
 入力層
@@ -27,23 +35,28 @@ model = tf.keras.models.Sequential()
 畳み込み層1
 フィルタ数：32
 フィルタサイズ：3x3
-活性化函数：ReLU
+活性化函数：PReLU
 """
-model.add(layers.Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)))
+model.add(layers.Conv2D(32, (3, 3), input_shape=(28, 28, 1)))
+model.add(layers.PReLU())
 model.add(layers.MaxPooling2D((2, 2)))
 
 """
 畳み込み層2
 フィルタ数：64
 フィルタサイズ：3x3
-活性化函数：ReLU
+活性化函数：PReLU
 """
-model.add(layers.Conv2D(64, (3, 3), activation='relu'))
+model.add(layers.Conv2D(64, (3, 3)))
+model.add(layers.PReLU())
 model.add(layers.MaxPooling2D((2, 2)))
 
 # 平坦化
 model.add(layers.Flatten())
 
+# model.add(tf.keras.layers.Dense(128))
+# model.add(tf.keras.layers.PReLU())
+# model.add(tf.keras.layers.Dropout(0.2))
 """
 出力層
 ニューロン：62個
