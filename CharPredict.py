@@ -7,10 +7,10 @@ model = tf.keras.models.load_model('CharModel.h5')
 
 # ps2png変換
 ps_img = Image.open('temp.ps')
-ps_img.save("out.png", "PNG")
+ps_img.save("temp.png", "PNG")
 
-# 画像のリサイズ・正規化
-png_img = Image.open('out.png').convert('L')
+# 画像の正規化
+png_img = Image.open('temp.png').convert('L')
 png_img = png_img.resize((28, 28))
 png_img = np.array(png_img)
 png_img = png_img / 255.0
