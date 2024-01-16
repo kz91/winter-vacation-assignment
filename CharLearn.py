@@ -26,6 +26,9 @@ print("y_train:", y_train.shape)
 print("y_train", x_test.shape)
 print("y_train", y_test.shape)
 
+np.random.seed(42)
+tf.random.set_seed(42)
+
 """
 入力層
 """
