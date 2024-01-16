@@ -9,11 +9,6 @@ import matplotlib.pyplot as plt
 x_train, y_train = extract_training_samples("byclass")
 x_test, y_test = extract_test_samples('byclass')
 
-print("x_train:", x_train.shape)
-print("y_train:", y_train.shape)
-print("y_train", x_test.shape)
-print("y_train", y_test.shape)
-
 # データ変形
 x_train = x_train.reshape((-1, 28, 28, 1))
 x_test = x_test.reshape((-1, 28, 28, 1))
@@ -25,6 +20,11 @@ x_test = x_test / 255.0
 # ラベルの型変換
 y_train = y_train.astype(np.int32)
 y_test = y_test.astype(np.int32)
+
+print("x_train:", x_train.shape)
+print("y_train:", y_train.shape)
+print("y_train", x_test.shape)
+print("y_train", y_test.shape)
 
 """
 入力層

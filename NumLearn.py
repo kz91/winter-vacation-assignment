@@ -8,14 +8,14 @@ mnist = tf.keras.datasets.mnist.load_data()
 train, test = mnist
 (x_train, y_train),(x_test, y_test) = mnist
 
+# 正規化
+x_train = x_train / 255.0
+x_test = x_test / 255.0
+
 print("x_train:", x_train.shape)
 print("y_train:", y_train.shape)
 print("y_train", x_test.shape)
 print("y_train", y_test.shape)
-
-# 正規化
-x_train = x_train / 255.0
-x_test = x_test / 255.0
 
 """
 入力層
