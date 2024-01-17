@@ -57,11 +57,17 @@ model.add(layers.MaxPooling2D((2, 2)))
 # 平坦化
 model.add(layers.Flatten())
 
-# model.add(tf.keras.layers.Dense(128))
-# model.add(tf.keras.layers.PReLU())
-# model.add(tf.keras.layers.Dropout(0.2))
 """
-出力層
+全結合層1
+ニューロン：128個
+活性化函数：PReLU
+"""
+model.add(tf.keras.layers.Dense(128))
+model.add(tf.keras.layers.PReLU())
+model.add(tf.keras.layers.Dropout(0.2))
+
+"""
+全結合層2
 ニューロン：62個
 活性化函数：Softmax
 """
